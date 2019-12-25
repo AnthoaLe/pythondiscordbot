@@ -4,6 +4,7 @@ import os
 from dotenv import load_dotenv
 
 from discord.ext import commands
+from discord import Guild
 
 # My own user created modules
 import cog
@@ -19,6 +20,14 @@ bot = commands.Bot(command_prefix='+')
 @bot.event
 async def on_ready():
     print(f"{bot.user.name} ready and online")
+
+@bot.event
+async def on_message(message):
+    channel = message.channel
+    author = message.author
+    joaquin = channel.guild.get_member(260275649665695744)
+    if (author == joaquin and channel.id == 314917657709379587):
+        await channel.send(f"Shut up Joaquin :angry:")
 
 @bot.event
 async def on_command_error(ctx, error):

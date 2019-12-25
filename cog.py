@@ -1,5 +1,6 @@
 # cog.py
 
+from discord import File
 from discord.ext import commands
 from random import randrange
 
@@ -27,7 +28,13 @@ class BasicCommands(commands.Cog):
 
     @commands.command(name= 'hello', help= 'Greets the user.')
     async def hello(self, ctx):
-        await ctx.send(f"Hello, {Context.author}.")
+        await ctx.send(f"Hello, {ctx.message.author}.")
+
+    @commands.command(name= 'image', help= 'Sends a picture of a python.')
+    async def image(self, ctx):
+        filePath = "images\\snake1.jpg"
+        discordFile = File(filePath)
+        await ctx.send(file= discordFile)
 
     @commands.command(name= 'roll', help= 'Rolls X (numDice) with max value of Y (maxDiceValue).')
     async def roll(self, ctx, numDice: int, maxDiceValue: int):
